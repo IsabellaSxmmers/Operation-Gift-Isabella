@@ -119,8 +119,8 @@ const QUESTIONS=[
  {key:'price',title:'What is your realistic price bracket?',opts:[
   ['p1','Keep it cheap','The “I love you, but eggs are $7” bracket.'],
   ['p2','Something nice','Tasteful, respectable, and Mom would definitely approve.'],
-  ['p3','Go all out','You either got a promotion, or you’re trying to win Favorite Relative.'],
-  ['p4','No limit','Either you won a small settlement, or you are legally adopting me as a dependent.']]},
+  ['p3','Go all out','Pricey, but not crazy. You either got a promotion, or you’re trying to win Favorite Relative.'],
+  ['p4','The big ticket','Pooling money with the siblings, or you just got a bonus. This is the one gift everyone will talk about.']]},
  {key:'timing',title:'Be honest! How far in advance are you securing this gift?',opts:[
   ['over','The Overachiever','Done so early you forgot where you hid it in the house.'],
   ['norm','The Normal Human','Black Friday / Cyber Monday. Reasonable adult planning with decent savings.'],
@@ -151,49 +151,58 @@ const TIMING={
  panic:{label:'Panic Buyer',check:'Everything here can be bought in a store today. Do not browse. Pick one, go, and pay for gift wrap if they offer it.'}};
 const HEADLINE={parent:'Hello Parentals!',boyfriend:'Hi Ivan!!!!',sibling:'Hello Hannah and Matthew.'};
 const MISSION_LABEL={nec:'Necessities',care:'Self-Care',fash:'Fashion',trav:'Travel',soul:'Soul food'};
-const PRICE_LABEL={p1:'Keep it cheap',p2:'Something nice',p3:'Go all out',p4:'No limit'};
+const PRICE_LABEL={p1:'Keep it cheap',p2:'Something nice',p3:'Go all out',p4:'The big ticket'};
 const ROLE_LABEL={parent:'Parent',sibling:'Sibling',boyfriend:'Boyfriend',aunt:'Aunt / Uncle',grand:'Grandparent',friend:'Friend'};
 const GHOST_LABEL={past:'Ghost of Christmas Past',present:'Ghost of Christmas Present',future:'Ghost of Christmas Yet to Come',scrooge:'Ebenezer Scrooge'};
 
-/* Isabella's real list. Fields: name, mission (nec/care/fash/trav), brackets (p1..p4 or 'any'), note, flags (f = easy to buy fast, p = needs lead time, s = sentimental), links [[label,url]] */
+/* Isabella's real list. Fields: name, mission (nec/care/fash/trav/soul), low price, high price ('any' for gift cards and cash), note, flags (f = easy to buy fast, p = needs lead time, s = sentimental), links [[label,url]].
+   Prices are approximate US retail prices. Each gift lands in every price bracket its price range touches: p1 up to $30, p2 $30 to $100, p3 $100 to $250, p4 over $250. Bundles add up the single items. */
 const GIFTS=[
- ['Buff City Soap laundry detergent','nec',['p1'],'Laundry day that smells expensive.','f',[['See it', 'https://buffcitysoap.com/products/buff-by-you-liquid-laundry-soap']]],
- ['Marvis toothpaste, whitening mint','nec',['p1'],'The fancy tube that makes brushing feel like a spa visit.','f',[['See it','https://www.amazon.com/dp/B000N2ZRRQ']]],
- ['Pura refills, Capri Blue Havana Vanilla','nec',['p1'],'Keeps the home smelling like a good hotel.','f',[['See it','https://www.amazon.com/dp/B0BWCC9B11']]],
- ['Wood hangers, a big set','nec',['p2'],'All the same brand. No more plastic hangers in the closet.','f',[['Example 30-pack', 'https://www.kohls.com/product/prd-8442885/30-pack-solid-wood-coat-hangers-360-swivel-hook-smooth-finish-shoulder-grooves-for-clothes.jsp']]],
- ['Rattan laundry hamper with a lid','nec',['p2'],'Hides the dirty laundry in style.','f',[['See it','https://www.amazon.com/dp/B0BR5BBF8B']]],
- ['Automatic bathroom trash can','nec',['p2'],'Touchless and self-changing.','f',[['See it','https://www.amazon.com/dp/B0D5BQ6B9V']]],
- ['Sheets, full size, hunter green','nec',['p2'],'Hunter green only, please.','f',[['See it','https://www.amazon.com/dp/B082NJL77T']]],
- ['Curtains and a gold curtain rod','nec',['p2'],'Curtains are 52" wide by 102" long in olive green. The rod is 72 to 144 inches in gold.','f',[['Curtains','https://a.co/d/02It5DjT'],['Rod','https://a.co/d/0bmPpgUQ']]],
- ['Music production studio desk with a sliding keyboard tray','nec',['p3'],'The tray has to fit a keyboard that is 51" long and 5" tall.','p',[['Example desk (check the tray fits 51 inches)', 'https://vintageking.com/products/bazel-studio-desk-raystag-61-key-studio-desk-black']]],
- ['Sephora gift card','care',['any'],'Any amount goes straight into skincare and beauty.','f',[['Buy it', 'https://sephora.com/product/sephora-collection-gift-card-P510100']]],
- ['Topicals Faded under eye masks','care',['p1'],'Brightening and clearing eye masks.','f',[['See it', 'https://sephora.com/product/faded-eye-masks-P507518']]],
- ['Gua sha','care',['p1'],'For the daily face massage.','f',[['Example gua sha', 'https://sephora.com/product/sephora-collection-rose-quartz-gua-sha-P502996']]],
- ['Lash curler','care',['p1'],'Small, cheap and used every day.','f',[['Browse curlers', 'https://www.sephora.com/shop/eyelash-curlers']]],
- ['Perfume or hair mists','care',['p1','p2'],'Anything that smells good.','f',[['Browse hair perfume', 'https://www.sephora.com/buy/hair-perfume-and-fragrance-layering']]],
- ['Bible stickers','soul',['p1'],'Tabs and summaries for the new Bible.','f',[['See it','https://www.amazon.com/dp/B0GCFZN6HZ']]],
- ['LittleBigPlanet soundtrack on vinyl','soul',['p2'],'The 2LP Earth and Moon inspired vinyl. A calm, nostalgic one.','sf',[['See it','https://www.walmart.com/ip/Various-Artists-Litllebigplanet-Ost-2LP-Earth-Moon-Inspired-Vinyl/21139924050']]],
- ['Moroccanoil curl shampoo and conditioner','care',['p2'],'The curl-enhancing bundle.','f',[['See it','https://www.moroccanoil.com/products/curl-enhancing-shampoo-conditioner-bundle']]],
- ['Caudalie firming cashmere moisturizer','care',['p2'],'The retinol alternative with pro-collagen multi-peptides.','f',[['See it','https://us.caudalie.com/p/574R2C/574r2c-firming-retinol-alternative-cashmere-moisturizer-with-pro-collagen-multi-peptides.html']]],
- ["L'Occitane almond collection",'care',['p2'],'Smells like a bakery, feels like a spa.','f',[['See it', 'https://usa.loccitane.com/delicious-almond-collection,82,1,29229,1351993.htm']]],
- ['Wall makeup mirror with light','care',['p2'],'Rechargeable, magnifying and double-sided.','f',[['See it','https://www.amazon.com/dp/B0DK3KMFBW']]],
- ['Journaling Bible','soul',['p2'],'A new Bible with room for notes.','sf',[['See it','https://www.amazon.com/dp/B0FTZHD51K']]],
- ['Shark depuffing hot and cold tool','care',['p3'],'Instant hot and cold contrast therapy for the face.','f',[['See it','https://www.sephora.com/product/shark-depuffi-instant-hot-cold-sculpting-massage-tool-P521129?skuId=3024841']]],
- ['La Vie Est Belle eau de parfum','care',['p3'],'The signature scent.','sf',[['See it','https://www.sephora.com/product/P375939?skuId=1460005']]],
- ['Nordstrom or Nordstrom Rack gift card','fash',['any'],'Any amount. Shoes, clothes and everything in between.','f',[['Buy it', 'https://www.nordstrom.com/nordstrom-gift-cards']]],
- ['French hair pin','fash',['p1'],'Instant put-together in one twist.','f',[['Example pin', 'https://www.mykitsch.com/products/gold-french-hair-pin']]],
- ['Matching pajamas','fash',['p2'],'Cozy, coordinated and very festive.','fs',[['Nordstrom Rack pajama sets','https://www.nordstromrack.com/shop/women/clothing/sleepwear-lounge/pajama-sets']]],
- ['Gold Apple Watch band','fash',['p2'],'The Rainey skinny stainless steel band in gold.','f',[['See it','https://www.macys.com/shop/product/posh-tech-rainey-skinny-stainless-steel-band-for-apple-watch?ID=26993715']]],
- ["Makena Hawai'i jewelry",'fash',['p2','p3'],'Gold rings or necklaces.','fs',[['Rings', 'https://makenahawaii.co/collections/rings'], ['Shop Makena', 'https://makenahawaii.co/']]],
- ['Steve Madden Berkleigh boots, black','fash',['p3'],'Black boots that go with everything.','f',[['See it','https://www.stevemadden.com/collections/boots-booties/products/berkleigh-black']]],
- ['Naturalizer Banks pointed toe flat, black','fash',['p3'],'Black leather flats.','f',[['See it','https://www.naturalizer.com/product/womens-banks-pointed-toe-flat-3018069/black-leather-ec0230878']]],
- ['Vivaia Adela mid slingback heels, black','fash',['p3'],'Black mid-heel slingbacks.','',[['See it','https://www.vivaia.com/products/XRPD01269/Adela?gid=10033588']]],
- ['Pashion slingback buckle stiletto, black','fash',['p3'],'Black leather 3-inch stiletto.','',[['See it','https://pashionfootwear.com/products/the-slingback-buckle-coal-leather-3-stiletto']]],
- ['Money for Japan','trav',['any'],'Isabella leaves December 4th, so this one is time-sensitive.','f',[]],
- ['Airline gift cards','trav',['any'],'American, Southwest or United.','f',[['American', 'https://giftcards.aa.com/'], ['Southwest', 'https://www.southwest.com/gift-card/']]],
- ['Luggage set','trav',['p3','p4'],'A matching set for the next trip.','f',[['Example set', 'https://www.luggageonline.com/products/samsonite-octiv-3-piece-set-22-24-28-hardside-spinner']]]
-].map(([name,m,b,d,flags,links])=>({name,m,b,d,fast:flags.includes('f'),plan:flags.includes('p'),sent:flags.includes('s'),links}));
+ ['Buff City Soap laundry detergent','nec',24,24,'Laundry day that smells expensive.','f',[['See it','https://buffcitysoap.com/products/buff-by-you-liquid-laundry-soap']]],
+ ['Marvis toothpaste, whitening mint','nec',10,12,'The fancy tube that makes brushing feel like a spa visit.','f',[['See it','https://www.amazon.com/dp/B000N2ZRRQ']]],
+ ['Pura refills, Capri Blue Havana Vanilla','nec',20,24,'Keeps the home smelling like a good hotel.','f',[['See it','https://www.amazon.com/dp/B0BWCC9B11']]],
+ ['Wood hangers, a big set','nec',60,85,'All the same brand. No more plastic hangers in the closet.','f',[['Example 30-pack','https://www.kohls.com/product/prd-8442885/30-pack-solid-wood-coat-hangers-360-swivel-hook-smooth-finish-shoulder-grooves-for-clothes.jsp']]],
+ ['Rattan laundry hamper with a lid','nec',60,75,'Hides the dirty laundry in style.','f',[['See it','https://www.amazon.com/dp/B0BR5BBF8B']]],
+ ['Automatic bathroom trash can','nec',50,90,'Touchless and self-changing.','f',[['See it','https://www.amazon.com/dp/B0D5BQ6B9V']]],
+ ['Sheets, full size, hunter green','nec',35,60,'Hunter green only, please.','f',[['See it','https://www.amazon.com/dp/B082NJL77T']]],
+ ['Curtains and a gold curtain rod','nec',70,100,'Curtains are 52" wide by 102" long in olive green. The rod is 72 to 144 inches in gold.','f',[['Curtains','https://a.co/d/02It5DjT'],['Rod','https://a.co/d/0bmPpgUQ']]],
+ ['Bedroom refresh bundle','nec',150,250,'Sheets, curtains and rod, and the rattan hamper. The whole bedroom, done.','',[['Sheets','https://www.amazon.com/dp/B082NJL77T'],['Curtains','https://a.co/d/02It5DjT'],['Rod','https://a.co/d/0bmPpgUQ'],['Hamper','https://www.amazon.com/dp/B0BR5BBF8B']]],
+ ['Closet and bedroom makeover bundle','nec',260,350,'The bedroom refresh plus a big set of wood hangers.','',[['Sheets','https://www.amazon.com/dp/B082NJL77T'],['Curtains','https://a.co/d/02It5DjT'],['Rod','https://a.co/d/0bmPpgUQ'],['Hamper','https://www.amazon.com/dp/B0BR5BBF8B'],['Hangers','https://www.kohls.com/product/prd-8442885/30-pack-solid-wood-coat-hangers-360-swivel-hook-smooth-finish-shoulder-grooves-for-clothes.jsp']]],
+ ['Music production studio desk with a sliding keyboard tray','nec',790,1850,'The tray has to fit a keyboard that is 51" long and 5" tall.','p',[['Example desk (check the tray fits 51 inches)','https://vintageking.com/products/bazel-studio-desk-raystag-88-key-studio-desk-black']]],
+ ['Sephora gift card','care','any','any','Any amount goes straight into skincare and beauty.','f',[['Buy it','https://sephora.com/product/sephora-collection-gift-card-P510100']]],
+ ['Topicals Faded under eye masks','care',22,22,'Brightening and clearing eye masks.','f',[['See it','https://sephora.com/product/faded-eye-masks-P507518']]],
+ ['Gua sha','care',18,18,'For the daily face massage.','f',[['Example gua sha','https://sephora.com/product/sephora-collection-rose-quartz-gua-sha-P502996']]],
+ ['Lash curler','care',11,29,'Small and used every day.','f',[['Browse curlers','https://www.sephora.com/shop/eyelash-curlers']]],
+ ['Perfume or hair mists','care',25,60,'Anything that smells good.','f',[['Browse hair perfume','https://www.sephora.com/buy/hair-perfume-and-fragrance-layering']]],
+ ['Moroccanoil curl shampoo and conditioner','care',60,60,'The curl-enhancing bundle.','f',[['See it','https://www.moroccanoil.com/products/curl-enhancing-shampoo-conditioner-bundle']]],
+ ['Caudalie firming cashmere moisturizer','care',69,69,'The retinol alternative with pro-collagen multi-peptides.','f',[['See it','https://us.caudalie.com/p/574R2C/574r2c-firming-retinol-alternative-cashmere-moisturizer-with-pro-collagen-multi-peptides.html']]],
+ ["L'Occitane almond collection",'care',23,90,'Smells like a bakery, feels like a spa.','f',[['See it','https://usa.loccitane.com/delicious-almond-collection,82,1,29229,1351993.htm']]],
+ ['Wall makeup mirror with light','care',40,70,'Rechargeable, magnifying and double-sided.','f',[['See it','https://www.amazon.com/dp/B0DK3KMFBW']]],
+ ['Shark depuffing hot and cold tool','care',199,199,'Instant hot and cold contrast therapy for the face.','f',[['See it','https://www.sephora.com/product/shark-depuffi-instant-hot-cold-sculpting-massage-tool-P521129?skuId=3024841']]],
+ ['La Vie Est Belle eau de parfum','care',133,149,'The signature scent.','sf',[['See it','https://www.sephora.com/product/P375939?skuId=1460005']]],
+ ['Spa night bundle','care',190,230,'Moroccanoil curl duo, Caudalie moisturizer and the L\'Occitane almond set.','',[['Moroccanoil','https://www.moroccanoil.com/products/curl-enhancing-shampoo-conditioner-bundle'],['Caudalie','https://us.caudalie.com/p/574R2C/574r2c-firming-retinol-alternative-cashmere-moisturizer-with-pro-collagen-multi-peptides.html'],["L'Occitane",'https://usa.loccitane.com/delicious-almond-collection,82,1,29229,1351993.htm']]],
+ ['The full glow-up bundle','care',380,420,'The Shark hot and cold tool, La Vie Est Belle and the Caudalie moisturizer.','sf',[['Shark','https://www.sephora.com/product/shark-depuffi-instant-hot-cold-sculpting-massage-tool-P521129?skuId=3024841'],['La Vie Est Belle','https://www.sephora.com/product/P375939?skuId=1460005'],['Caudalie','https://us.caudalie.com/p/574R2C/574r2c-firming-retinol-alternative-cashmere-moisturizer-with-pro-collagen-multi-peptides.html']]],
+ ['Nordstrom or Nordstrom Rack gift card','fash','any','any','Any amount. Shoes, clothes and everything in between.','f',[['Buy it','https://www.nordstrom.com/nordstrom-gift-cards']]],
+ ['French hair pin','fash',14,14,'Instant put-together in one twist.','f',[['Example pin','https://www.mykitsch.com/products/gold-french-hair-pin']]],
+ ['Matching pajamas','fash',15,60,'Cozy, coordinated and very festive.','fs',[['Nordstrom Rack pajama sets','https://www.nordstromrack.com/shop/women/clothing/sleepwear-lounge/pajama-sets']]],
+ ['Gold Apple Watch band','fash',35,60,'The Rainey skinny stainless steel band in gold.','f',[['See it','https://www.macys.com/shop/product/posh-tech-rainey-skinny-stainless-steel-band-for-apple-watch?ID=26993715']]],
+ ["Makena Hawai'i jewelry",'fash',32,100,'Gold rings or necklaces.','fs',[['Rings','https://makenahawaii.co/collections/rings'],['Shop Makena','https://makenahawaii.co/']]],
+ ['Steve Madden Berkleigh boots, black','fash',91,91,'Black boots that go with everything.','f',[['See it','https://www.stevemadden.com/collections/boots-booties/products/berkleigh-black']]],
+ ['Naturalizer Banks pointed toe flat, black','fash',110,130,'Black leather flats.','f',[['See it','https://www.naturalizer.com/product/womens-banks-pointed-toe-flat-3018069/black-leather-ec0230878']]],
+ ['Vivaia Adela mid slingback heels, black','fash',159,159,'Black mid-heel slingbacks.','',[['See it','https://www.vivaia.com/products/XRPD01269/Adela?gid=10033588']]],
+ ['Pashion slingback buckle stiletto, black','fash',210,210,'Black leather 3-inch stiletto.','',[['See it','https://pashionfootwear.com/products/the-slingback-buckle-coal-leather-3-stiletto']]],
+ ['Closet refresh bundle','fash',300,380,'Steve Madden boots, Naturalizer flats, the gold watch band and a Makena necklace.','',[['Boots','https://www.stevemadden.com/collections/boots-booties/products/berkleigh-black'],['Flats','https://www.naturalizer.com/product/womens-banks-pointed-toe-flat-3018069/black-leather-ec0230878'],['Watch band','https://www.macys.com/shop/product/posh-tech-rainey-skinny-stainless-steel-band-for-apple-watch?ID=26993715'],['Makena','https://makenahawaii.co/']]],
+ ['The shoe haul bundle','fash',440,480,'Both black slingbacks and the Steve Madden boots.','',[['Pashion','https://pashionfootwear.com/products/the-slingback-buckle-coal-leather-3-stiletto'],['VIVAIA','https://www.vivaia.com/products/XRPD01269/Adela?gid=10033588'],['Boots','https://www.stevemadden.com/collections/boots-booties/products/berkleigh-black']]],
+ ['Money for Japan','trav','any','any','Isabella leaves December 4th, so this one is time-sensitive.','f',[]],
+ ['Airline gift cards','trav','any','any','American, Southwest or United.','f',[['American','https://giftcards.aa.com/'],['Southwest','https://www.southwest.com/gift-card/']]],
+ ['Luggage set','trav',600,600,'A matching set for the next trip.','f',[['Example set','https://www.luggageonline.com/products/samsonite-octiv-3-piece-set-22-24-28-hardside-spinner']]],
+ ['LittleBigPlanet soundtrack on vinyl','soul',43,43,'The 2LP Earth and Moon inspired vinyl. A calm, nostalgic one.','sf',[['See it','https://www.walmart.com/ip/Various-Artists-Litllebigplanet-Ost-2LP-Earth-Moon-Inspired-Vinyl/21139924050']]],
+ ['Journaling Bible','soul',28,40,'A new Bible with room for notes.','sf',[['See it','https://www.amazon.com/dp/B0FTZHD51K']]],
+ ['Bible stickers','soul',8,12,'Tabs and summaries for the new Bible.','f',[['See it','https://www.amazon.com/dp/B0GCFZN6HZ']]]
+].map(([name,m,lo,hi,d,flags,links])=>({name,m,lo,hi,any:lo==='any',d,fast:flags.includes('f'),plan:flags.includes('p'),sent:flags.includes('s'),links}));
 const BORDER=['p1','p2','p3','p4'];
+const BRACKET_RANGE={p1:[0,30],p2:[30,100],p3:[100,250],p4:[250,1e9]};
+const inBracket=(g,b)=>g.any||(g.lo<=BRACKET_RANGE[b][1]&&g.hi>BRACKET_RANGE[b][0]);
 
 /* ---------- App ---------- */
 let step=-1,ans={};
@@ -225,23 +234,28 @@ function renderStep(){
 const PINS={sibling:'LittleBigPlanet soundtrack on vinyl',parent:'Journaling Bible',grand:'Journaling Bible'};
 const pinFor=()=>GIFTS.find(g=>g.name===PINS[ans.role]);
 function pickGifts(){
-  const bi=BORDER.indexOf(ans.price);
-  const dist=g=>g.b[0]==='any'?0:Math.min(...g.b.map(x=>Math.abs(BORDER.indexOf(x)-bi)));
-  const lowEnd=g=>g.b[0]==='any'?bi:Math.min(...g.b.map(x=>BORDER.indexOf(x)));
+  const pin=pinFor();
+  const want=pin?2:3;
   const timeOk=g=>ans.timing==='panic'?g.fast:ans.timing==='proc'?!g.plan:true;
   const notes={};
-  const scored=GIFTS.filter(g=>g.m===ans.mission).map(g=>{
-    let s=Math.random()*0.9-dist(g)*4;
-    if(dist(g)>0)notes[g.name]=lowEnd(g)>bi?'A stretch pick':'A budget-friendly pick';
+  // Only gifts whose price fits the chosen bracket. Gift cards fit any bracket.
+  let pool=GIFTS.filter(g=>g.m===ans.mission&&inBracket(g,ans.price));
+  if(pool.length<want){
+    // Not enough in this category: borrow gift cards and cash from other categories.
+    const extra=GIFTS.filter(g=>g.any&&g.m!==ans.mission&&!pool.includes(g)).sort(()=>Math.random()-.5);
+    extra.slice(0,want-pool.length).forEach(g=>{notes[g.name]='Gift card, any amount';pool.push(g)});
+  }
+  const scored=pool.map(g=>{
+    let s=Math.random()*0.9;
     if(!timeOk(g)){s-=10;notes[g.name]='Needs lead time'}
     else if(ans.timing==='over'&&g.plan){s+=2;notes[g.name]='Plan-ahead pick'}
     if(ans.ghost==='past'&&g.sent)s+=2;
     if(ans.ghost==='present'&&g.fast)s+=1;
-    if(ans.ghost==='scrooge')s-=lowEnd(g)*0.6;
+    if(ans.ghost==='scrooge')s-=(g.any?0:g.lo)/100;
     return {g,s};
-  }).sort((a,b)=>b.s-a.s).slice(0,pinFor()?2:3);
+  }).sort((a,b)=>b.s-a.s).slice(0,want);
   const list=scored.map(x=>x.g);
-  if(pinFor())list.unshift(pinFor());
+  if(pin)list.unshift(pin);
   return {list,notes};
 }
 function planText(list){
